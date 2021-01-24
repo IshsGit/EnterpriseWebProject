@@ -6,9 +6,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+ * The compiler for plant diary REST endpoints and web UI
+ * <p>
+ * This class handles the CRUH operations for my plant diary specimens, via HTTP actions
+ * </p>
+ * <p>
+ * This class also serves HTML based web pages for UI interactions with plant specimens
+ * </p>
+ */
 @Controller
 public class PlantDiaryController {
 
+    /**
+     * Handle the / end point
+     * @return
+     */
     @RequestMapping("/")
     public String index(){
         return "start";
@@ -25,9 +39,19 @@ public class PlantDiaryController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    // RequestBody parses through JSON obj and populates specimen's fields
+    /**
+     * Create a new specimen object, given the data provided
+     *
+     * Returns one of the following status codes:
+     * 201: successfully created a new specimen
+     * 409: unable to create specimen, because it already exists
+     *
+     * @param specimen a JSON representation of a specimen object
+     * @return the newly created specimen object
+     */
     @PostMapping(value="/specimen", produces="application/json", consumes="application/json")
     public Specimen createSpecimen(@RequestBody Specimen specimen){
+        // RequestBody parses through JSON obj and populates specimen's fields
         System.out.println(specimen.getSpecimenId());
         return specimen;
     }
