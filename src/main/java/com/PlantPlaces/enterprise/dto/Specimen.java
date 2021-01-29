@@ -6,7 +6,8 @@ import lombok.Data;
 import javax.persistence.Entity;
 
 @Entity
-public @Data class Specimen {
+@Data
+public class Specimen {
     private String plantId;
     private String specimenId;
     private String latitude;
